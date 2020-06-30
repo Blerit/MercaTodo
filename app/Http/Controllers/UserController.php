@@ -12,8 +12,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['admin', 'user']);
         $users = User::all();
         return view('users', compact('users'));
     }
@@ -45,9 +46,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('show', compact('user'));
     }
 
     /**
@@ -56,9 +57,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        // $user = User::find($id);
+        return view('edit', compact('user'));
     }
 
     /**
@@ -70,7 +72,24 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);        
+        $user->fill($request->all());        
+        $user->save();
+        return redirect()->route('users.index');
+    }
+
+    public function statusUpdate(Request $request, $id)
+    {
+        $user = User::find($id);        
+        if ($user->status){
+            $check = false;
+        } else {
+            $check = true;
+        }
+
+        $user->status = $check;
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**
@@ -82,5 +101,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function __construct()
+    {
+        $this->middleware('checked')->only('edit', 'show');
+
+        // $this->middleware('log')->only('index');
+
+        // $this->middleware('subscribed')->except('store');
     }
 }

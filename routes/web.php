@@ -4,6 +4,7 @@ use Illuminate\Foundation\Console\RouteCacheCommand;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckStatus;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes(['verify' => true]);
 
-Route::resource('users', 'UserController')->middleware('verified');;
+Route::resource('users', 'UserController')->middleware('verified', 'checked');
+
+Route::patch('usrs/{userid}', 'UserController@statusUpdate')->name('statusUpdate')->middleware('verified', 'checked');
+
