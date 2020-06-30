@@ -1,6 +1,11 @@
 @extends('layouts.app')
-
+@section('title', 'Users')
 @section('content')
+  <div class="container text-center">
+    <div class="card text-white bg-dark">      
+        <h3 class="mb-0">USERS LIST</h3>      
+    </div>
+  </div>
   <div class="container mt-2">
   @if (session('status'))
       <div class="alert alert-success" role="alert">
@@ -14,6 +19,7 @@
           <th scope="col">Name</th>
           <th scope="col">Email</th>
           <th scope="col">Verified</th>
+          <th scope="col">Admin</th>
           <th scope="col">Status</th>
           <th scope="col">Edit</th>
         </tr>
@@ -38,7 +44,18 @@
                 <path fill-rule="evenodd" d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z"/>
                 <path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
               </svg></td>
-              @endif  
+              @endif 
+              <td>    
+                <form action="{{route('adminUpdate', $user->id)}}" method="POST">
+                @method('PATCH')
+                @csrf
+                @if($user->admin)
+                  <input type="submit" name="options" class="btn btn-outline-dark btn-sm" id="option1" value="Admin">
+                @else
+                  <input type="submit" name="options" class="btn btn-outline-dark btn-sm" id="option1" value="User">
+                @endif
+                </form>
+              </td>
               <td>
                 <form action="{{route('statusUpdate', $user->id)}}" method="POST">
                 @method('PATCH')

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Edit User')
 @section('content')
 
 <form action="/users/{{$user->id}}" method="POST">
@@ -16,7 +16,7 @@
       <input type="email" name="email" class="form-control" id="exampleInputPassword1" value="{{$user->email}}">
     </div>
     <button type="submit" class="btn btn-outline-primary">Update</button>
-    <!-- <button type="submit" class="btn btn-outline-danger">Cancel</button> -->
+    <a href="../" class="btn btn-outline-danger">Cancel</a>
   </div>
 </form>
 @endsection

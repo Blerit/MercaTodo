@@ -19,6 +19,6 @@ class CheckStatus
             return $next($request);
         }
         
-        return redirect('users')->with('message', 'No tienes permisos para acceder a esa ruta');
+        return redirect('/')->with('message', 'No tienes permisos para acceder a esa ruta');
     }
 }

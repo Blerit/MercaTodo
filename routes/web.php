@@ -30,3 +30,5 @@ Route::resource('users', 'UserController')->middleware('verified', 'checked');
 
 Route::patch('usrs/{userid}', 'UserController@statusUpdate')->name('statusUpdate')->middleware('verified', 'checked');
 
+Route::patch('usr/{userid}', 'UserController@adminUpdate')->name('adminUpdate')->middleware('verified', 'checked');
+

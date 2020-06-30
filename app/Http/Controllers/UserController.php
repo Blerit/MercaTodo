@@ -92,6 +92,20 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function adminUpdate(Request $request, $id)
+    {
+        $user = User::find($id);        
+        if ($user->admin){
+            $check = false;
+        } else {
+            $check = true;
+        }
+
+        $user->admin = $check;
+        $user->save();
+        return redirect()->route('users.index');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -105,7 +119,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('checked')->only('edit', 'show');
+        $this->middleware('checked')->except('welcome');
 
         // $this->middleware('log')->only('index');
 
