@@ -7,11 +7,11 @@
     </div>
   </div>
   <div class="container mt-2">
-  @if (session('status'))
+    @if (session('status'))
       <div class="alert alert-success" role="alert">
           {{ session('status') }}
       </div>
-  @endif
+    @endif
     <table class="table text-center">
       <thead class="thead-dark">
         <tr>
@@ -74,8 +74,11 @@
                 </svg></a>
               </td>
             </tr>          
-        @endforeach        
-      </tbody>
+        @endforeach  
+      </tbody>       
     </table>
-  </div>
+    <div class="pagination justify-content-center">
+      {{$users->links()}} 
+    </div>  
+  </div>  
 @endsection

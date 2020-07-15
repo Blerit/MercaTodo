@@ -14,8 +14,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['admin', 'user']);
-        $users = User::all();
+        $request->user()->authorizeRoles(['user', 'admin']);
+        $users = User::paginate(2);
         return view('users', compact('users'));
     }
 
