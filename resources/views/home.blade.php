@@ -69,10 +69,13 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth                        
-                        <a href="{{ url('users') }}">Users</a>
-                        <a class="" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
+                        <a 
+                            href="{{ url('users') }}">Users</a>
+                        <a 
+                            class="" 
+                            href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -94,7 +97,7 @@
                 <div class="title m-b-md">
                     ¡ {{ Auth::user()->name }} !
                     <h1>Welcome to MercaTodo</h1> 
-                    
+                     
                 </div>                
             </div>
         </div>

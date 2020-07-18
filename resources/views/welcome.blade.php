@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Users')
+@section('title', 'MerkaTodo')
 @section('content')
   Holi Clientes papasitos
 @endsection

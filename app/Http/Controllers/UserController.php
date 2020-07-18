@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $request->user()->authorizeRoles(['user', 'admin']);
-        $users = User::paginate(2);
+        $users = User::paginate(4);
         return view('users', compact('users'));
     }
 
