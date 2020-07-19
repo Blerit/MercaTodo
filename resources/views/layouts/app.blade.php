@@ -60,6 +60,8 @@
                                 @if(Auth::user()->admin)
                                     <a 
                                     class="dropdown-item" href="{{route('users.index')}}">Users</a>
+                                    <a 
+                                    class="dropdown-item" href="{{route('products.index')}}">Product List</a>
                                 @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

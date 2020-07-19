@@ -11,5 +11,6 @@ $factory->define(Products::class, function (Faker $faker) {
         'description'   => $faker->text(100),
         'price'         => $faker->numberBetween($min = 100, $max = 9000),
         'tags'          => $faker->sentence,
+        'stock'         => $faker->numberBetween($min = 0, $max = 20)
     ];
 });
