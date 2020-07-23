@@ -3,7 +3,7 @@
 @section('content')
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-10">
+      <div class="col">
         <div class="card">
           <div class="card-header">
             Lista de Productos
@@ -46,7 +46,6 @@
                       <th scope="row">{{$product->id}}</th>
                       <td>
                         <a 
-                        class="d-flex justify-content-start" 
                         href="products/{{$product->id}}">{{$product->title}}</a>
                       </td>
                       <td>$ {{$product->price}}</td>
