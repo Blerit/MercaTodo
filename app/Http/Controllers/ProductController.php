@@ -23,9 +23,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Products $product)
+    public function create()
     {
-        return view('products.create', compact('product'));
+        return view('products.create');
     }
 
     /**

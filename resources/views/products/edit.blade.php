@@ -4,11 +4,11 @@
 <div class="container">
   <div class="card">
     <div class="card-header">Edit Product</div>
-    <div class="container">
-      <form action="products/{{$product->id}}" method="POST" class="mb-3">
+    <div class="card-body">
+      <form action="products/{{$product->id}}" method="POST">
         @method('PUT')
         @csrf
-          <div class="form-group mt-2">
+          <div class="form-group">
             <label for="exampleInputEmail1">Product Name</label>
             <input 
               type="text" 
