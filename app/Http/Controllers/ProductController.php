@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use App\Products;
 use Illuminate\Http\Request;
 
@@ -34,14 +35,8 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $validatedData = $request->validate([
-            'title'     => 'required',
-            'price'     => 'required|numeric',
-            'stock'     => 'required|numeric',
-        ]);
-
         $product = new Products();
         $product->fill($request->all());
         $product->save();
