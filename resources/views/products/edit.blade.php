@@ -5,11 +5,14 @@
   <div class="card">
     <div class="card-header">Edit Product</div>
     <div class="card-body">
-      <form action="products/{{$product->id}}" method="POST">
+      <form 
+        action="/products/{{$product->id}}" 
+        method="POST"
+        enctype="multipart/form-data">
         @method('PUT')
         @csrf
           <div class="form-group">
-            <label for="exampleInputEmail1">Product Name</label>
+            <label>Product Name</label>
             <input 
               type="text" 
               name="title" 
@@ -63,7 +66,7 @@
             <label for="">Pic</label>
             <input 
               type="file" 
-              name="tags"
+              name="image"
               id="exampleInputPassword1" 
               value="" 
               required>

@@ -79,7 +79,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Products::find($id);
+        $product->fill($request->all());
+        $product->save();
+
+        return redirect('products');
     }
 
     /**
