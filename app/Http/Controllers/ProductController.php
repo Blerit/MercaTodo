@@ -44,7 +44,7 @@ class ProductController extends Controller
         $product = new Products();
         $product->fill($request->all());
         $product->save();
-        return view('products.index');
+        return redirect('products');
     }
 
     /**

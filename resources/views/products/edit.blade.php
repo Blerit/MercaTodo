@@ -18,9 +18,6 @@
               aria-describedby="emailHelp" 
               value="{{$product->title}}"
               required>
-            <small 
-              id="emailHelp" 
-              class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
           <div class="form-group">
             <label for="exampleInputTextarea1">Description</label>
@@ -40,6 +37,35 @@
               class="form-control" 
               id="exampleInputPassword1" 
               value="{{$product->price}}" 
+              required>
+          </div>
+          <div class="form-group">
+            <label for="">Stock</label>
+            <input 
+              type="number" 
+              name="stock" 
+              class="form-control" 
+              id="exampleInputPassword1" 
+              value="{{$product->stock}}" 
+              required>
+          </div>
+          <div class="form-group">
+            <label for="">Tags</label>
+            <input 
+              type="text" 
+              name="tags" 
+              class="form-control" 
+              id="exampleInputPassword1" 
+              value="{{$product->tags}}" 
+              required>
+          </div>
+          <div class="form-group">
+            <label for="">Pic</label>
+            <input 
+              type="file" 
+              name="tags"
+              id="exampleInputPassword1" 
+              value="" 
               required>
           </div>
           <button 
