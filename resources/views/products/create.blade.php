@@ -15,7 +15,8 @@
                 <form 
                     action="/products" 
                     class="form-group"
-                    method="post">
+                    method="post"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                     <label for="">Product name</label>
@@ -61,8 +62,8 @@
                     <label for="">Pics</label>
                     <input 
                         type="file" 
-                        name="tags" 
-                        class="form-control">
+                        name="image" 
+                        class="">
                     </div>
                     <button 
                         type="submit" 

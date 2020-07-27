@@ -37,6 +37,10 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        $file = $request->file('image');
+        $name = time().$file->getClientOriginalName();
+        $file->move(public_path().'/images/', $name);
+
         $product = new Products();
         $product->fill($request->all());
         $product->save();
