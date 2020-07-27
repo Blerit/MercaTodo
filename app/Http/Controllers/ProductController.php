@@ -36,7 +36,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title'     => 'required',
+            'price'     => 'required|numeric',
+            'stock'     => 'required|numeric',
+        ]);
+
+        $product = new Products();
+        $product->fill($request->all());
+        $product->save();
+        return view('products.index');
     }
 
     /**

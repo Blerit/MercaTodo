@@ -2,6 +2,12 @@
 @section('title', 'Create Product')
 @section('content')
 
+@if($errors->any())
+    @foreach($errors->all() as $error)
+        <p>{{$error}}</p>
+    @endforeach
+@endif
+
 <div class="container">
     <div class="card">
         <div class="card-header">Create Product</div>
@@ -16,33 +22,45 @@
                     <input 
                         type="text" 
                         name="title" 
-                        class="form-control">
+                        class="form-control"
+                        required>
                     </div>
                     <div class="form-group">
                     <label for="">Description</label>
                     <input 
                         type="text" 
                         name="description" 
-                        class="form-control">
+                        class="form-control"
+                        required>
                     </div>
                     <div class="form-group">
                     <label for="">Price</label>
                     <input 
                         type="number" 
                         name="price" 
-                        class="form-control">
+                        class="form-control"
+                        required>
                     </div>
                     <div class="form-group">
                     <label for="">Stock</label>
                     <input 
                         type="number" 
                         name="stock" 
-                        class="form-control">
+                        class="form-control"
+                        required>
                     </div>
                     <div class="form-group">
                     <label for="">Tags</label>
                     <input 
                         type="text" 
+                        name="tags" 
+                        class="form-control"
+                        required>
+                    </div>
+                    <div class="form-group">
+                    <label for="">Pics</label>
+                    <input 
+                        type="file" 
                         name="tags" 
                         class="form-control">
                     </div>
