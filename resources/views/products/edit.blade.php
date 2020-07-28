@@ -68,8 +68,7 @@
               type="file" 
               name="image"
               id="exampleInputPassword1" 
-              value="" 
-              required>
+              value="">
           </div>
           <button 
             type="submit" 
