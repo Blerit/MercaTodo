@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use App\Products;
 use Illuminate\Http\Request;
 
@@ -14,6 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        
         $products = Products::paginate(10);
         return view('products.index', compact('products'));
     }
@@ -25,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -34,9 +36,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $file = $request->file('image');
+        $name = time().$file->getClientOriginalName();
+        $file->move(public_path().'/images/', $name);
+
+        $product = new Products();
+        $product->fill($request->all());
+        $product->save();
+        return redirect('products');
     }
 
     /**
@@ -58,7 +67,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Products::find($id);
+        return view('products.edit', compact('product'));
     }
 
     /**
@@ -70,7 +80,11 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Products::find($id);
+        $product->fill($request->all());
+        $product->save();
+
+        return redirect('products');
     }
 
     /**
@@ -81,6 +95,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Products::find($id);
+        $product->delete();
+
+        return redirect('products');
     }
 }
