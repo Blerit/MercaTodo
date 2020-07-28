@@ -65,7 +65,6 @@
                         </svg></a>
                       </td>
                       <td>
-
                         <form 
                           action="products/{{$product->id}}" 
                           method="post">
