@@ -106,6 +106,7 @@ class ProductController extends Controller
 
     public function welcome()
     {
-        return view('welcome');
+        $products = Products::all();
+        return view('welcome', compact('products'));
     }
 }
