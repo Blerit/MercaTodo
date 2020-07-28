@@ -103,4 +103,9 @@ class ProductController extends Controller
 
         return redirect('products');
     }
+
+    public function welcome()
+    {
+        return view('welcome');
+    }
 }
