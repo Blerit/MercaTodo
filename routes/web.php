@@ -22,6 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', 'ProductController@welcome')->name('welcome');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes(['verify' => true]);

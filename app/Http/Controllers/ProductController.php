@@ -13,11 +13,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        $products = Products::paginate(10);
-        return view('products.index', compact('products'));
+        if($request){
+            $query = trim($request->get('search'));
+            $products = Products::where('tags', 'LIKE', '%'.$query.'%')->paginate(10);
+
+            return view('products.index', compact('products', 'query'));
+        }
     }
 
     /**
@@ -99,5 +102,10 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect('products');
+    }
+
+    public function welcome()
+    {
+        return view('welcome');
     }
 }
