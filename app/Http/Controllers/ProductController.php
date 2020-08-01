@@ -14,13 +14,22 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
+    //analizar el request, es util tenerlo acá?
     {
-        if($request){
+        if($request->has('search')){
             $query = trim($request->get('search'));
+            //Cambiar la variable query por algo mas relacionado//Añadir el Or where in title, para elegir tambien el nombre en el título 
             $products = Products::where('tags', 'LIKE', '%'.$query.'%')->paginate(10);
 
-            return view('products.index', compact('products', 'query'));
+            //Buscar comando para realizar una búsqueda con artisan|patrón repositorio/factory
+            
+            //Buscar Collection y entender
+        } else {
+            $query = '';
+            $products = Products::paginate(10);           
         }
+
+        return view('products.index', compact('products', 'query'));
     }
 
     /**
@@ -44,6 +53,8 @@ class ProductController extends Controller
         $file = $request->file('image');
         $name = time().$file->getClientOriginalName();
         $file->move(public_path().'/images/', $name);
+        //buscar metodo store para archivos
+        //Guardar en Storage, buscar información de storage en laravel
 
         $product = new Products();
         $product->fill($request->all());
