@@ -51,19 +51,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        // $path = $request->file('image');
-        // $name = time().$path->getClientOriginalName();
-
-        // $path->move(public_path('storage/productsImg', 'public'), $name);
-
-        // return $name;
-
         $path = $request->file('image')->store('productsImg', 'public');
-
-        // $file = $request->file('image');
-        // $name = time().$file->getClientOriginalName();
-        // $file->move(public_path('storage/productsImg'), $name);
-
         $product = new Products();
         $product->fill($request->all());
         $product->image = $path;
