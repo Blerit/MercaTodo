@@ -6,6 +6,7 @@ use App\Products;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController extends Controller
 {
@@ -53,6 +54,8 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $path = $request->file('image')->store('productsImg', 'public');
+        $img = Image::make(public_path("storage/$path"))->resize(1000,500);
+        $img->save();
         $product = new Products();
         $product->fill($request->all());
         $product->image = $path;
