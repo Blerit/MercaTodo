@@ -18,19 +18,20 @@ class ProductController extends Controller
     //analizar el request, es util tenerlo acá?
     {
         if($request->has('search')){
-            $query = trim($request->get('search'));
-            //Cambiar la variable query por algo mas relacionado//Añadir el Or where in title, para elegir tambien el nombre en el título 
-            $products = Products::where('tags', 'LIKE', '%'.$query.'%')->paginate(10);
+            $search = trim($request->get('search'));
+            $products = Products::where('tags', 'like', '%'.$search.'%')
+            ->orWhere('title', 'like', '%'.$search.'%')
+            ->paginate(10);
 
             //Buscar comando para realizar una búsqueda con artisan|patrón repositorio/factory
             
             //Buscar Collection y entender
         } else {
-            $query = '';
+            $search = '';
             $products = Products::paginate(10);           
         }
 
-        return view('products.index', compact('products', 'query'));
+        return view('products.index', compact('products', 'search'));
     }
 
     /**
@@ -96,6 +97,20 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('products');
+    }
+
+    public function statusUpdate($id)
+    {
+        $product = Products::find($id);        
+        if ($product->isEnabled){
+            $check = false;
+        } else {
+            $check = true;
+        }
+
+        $product->isEnabled = $check;
+        $product->save();
+        return redirect()->route('products.index');
     }
 
     /**

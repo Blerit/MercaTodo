@@ -34,4 +34,6 @@ Route::patch('usr/{userid}', 'UserController@adminUpdate')->name('adminUpdate')-
 
 Route::resource('products', 'ProductController')->middleware('verified', 'checked');
 
+Route::patch('prod/{productid}', 'ProductController@statusUpdate')->name('productStatusUpdate')->middleware('verified', 'checked');
+
 Route::get('/', 'ProductController@welcome')->name('welcome');

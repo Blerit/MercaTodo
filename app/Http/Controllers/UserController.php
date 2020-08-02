@@ -78,7 +78,7 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function statusUpdate(Request $request, $id)
+    public function statusUpdate($id)
     {
         $user = User::find($id);        
         if ($user->status){
@@ -92,7 +92,7 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function adminUpdate(Request $request, $id)
+    public function adminUpdate($id)
     {
         $user = User::find($id);        
         if ($user->admin){
