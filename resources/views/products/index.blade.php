@@ -52,11 +52,26 @@
                       <td>$ {{$product->price}}</td>
                       <td>{{$product->stock}}</td>
                       <td>
+                        <form 
+                          action="{{route('productStatusUpdate', $product->id)}}" method="POST">
+                        @method('PATCH')
+                        @csrf
                         @if($product->isEnabled)
-                          Enabled
+                          <input 
+                            type="submit" 
+                            name="options" 
+                            class="btn btn-outline-success btn-sm" 
+                            id="option1" 
+                            value="Enabled">
                         @else
-                          Disabled
+                          <input 
+                            type="submit" 
+                            name="options" 
+                            class="btn btn-outline-danger btn-sm" 
+                            id="option1" 
+                            value="Disabled">
                         @endif
+                        </form>
                       </td>                
                       <td>
                         <a href="products/{{$product->id}}/edit"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
