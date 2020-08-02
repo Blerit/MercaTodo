@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'MerkaTodo')
 @section('content')
-<div class="container">
+<!-- <div class="container">
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -15,23 +15,23 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
   <div class="container">
-    @foreach($products as $product)
+    <div class="row"> 
+      @foreach($products as $product)
       @if($product->isEnabled)
-        <div class="row"> 
-          <div class="col-md-4">
-            <div class="card" style="width: 24rem;">
+          <div class="col-md-4 mb-4">
+            <div class="card">
               <img src="storage/{{$product->image}}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{$product->title}}</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
-            </div><br>
+            </div>
           </div>         
-        </div>
-      @endif
-    @endforeach
+        @endif
+        @endforeach
+    </div>
   </div>
 @endsection
