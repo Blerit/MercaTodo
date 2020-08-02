@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Products;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -50,14 +51,22 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $file = $request->file('image');
-        $name = time().$file->getClientOriginalName();
-        $file->move(public_path().'/images/', $name);
-        //buscar metodo store para archivos
-        //Guardar en Storage, buscar información de storage en laravel
+        // $path = $request->file('image');
+        // $name = time().$path->getClientOriginalName();
+
+        // $path->move(public_path('storage/productsImg', 'public'), $name);
+
+        // return $name;
+
+        $path = $request->file('image')->store('productsImg', 'public');
+
+        // $file = $request->file('image');
+        // $name = time().$file->getClientOriginalName();
+        // $file->move(public_path('storage/productsImg'), $name);
 
         $product = new Products();
         $product->fill($request->all());
+        $product->image = $path;
         $product->save();
         return redirect('products');
     }
@@ -108,8 +117,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {         
         $product = Products::find($id);
+        $image_path = public_path().'/storage/'.$product->image;
+        unlink($image_path);
         $product->delete();
 
         return redirect('products');
