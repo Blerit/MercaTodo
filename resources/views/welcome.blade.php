@@ -22,7 +22,9 @@
       @if($product->isEnabled)
           <div class="col-md-4 mb-4">
             <div class="card">
-              <img src="storage/{{$product->image}}" class="card-img-top" alt="...">
+              <a href="products/{{$product->id}}">                
+                <img src="storage/{{$product->image}}" class="card-img-top" alt="...">
+              </a>
               <div class="card-body">
                 <h5 class="card-title"><b>{{$product->title}}</b></h5>
                 <p class="card-text">{{$product->description}}</p>
