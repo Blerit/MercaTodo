@@ -30,9 +30,17 @@
               <div class="card-body">
                 <h5 class="card-title"><b>{{$product->title}}</b></h5>
                 <p class="card-text">{{$product->description}}</p>
-                <span>
-                  $ {{$product->price}} COP
-                </span><br>
+                <div class="pricebox">
+                  <span class="symbol">
+                    $
+                  </span>                  
+                  <span class="symbol">
+                    {{$product->price}}
+                  </span>
+                  <span class="symbol">
+                    <sup>COP</sup>
+                  </span><br>
+                </div>
                 <small>
                   Unidades Disponibles: {{$product->stock}}
                 </small><br>

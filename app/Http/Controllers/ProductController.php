@@ -150,4 +150,10 @@ class ProductController extends Controller
 
         return view('welcome', compact('products', 'search'));
     }
+    public function __construct()
+    {
+        $this->middleware('auth')->except('welcome', 'show');
+        $this->middleware('checked')->except('welcome', 'show');
+        $this->middleware('verified')->except('welcome', 'show');
+    }
 }

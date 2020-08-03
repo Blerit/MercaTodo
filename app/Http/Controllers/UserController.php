@@ -120,9 +120,5 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('checked')->except('welcome');
-
-        // $this->middleware('log')->only('index');
-
-        // $this->middleware('subscribed')->except('store');
     }
 }
