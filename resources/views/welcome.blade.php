@@ -26,7 +26,8 @@
     </div>
   </div>
 </div>
-  <div class="container">
+  <div class="container"> 
+    <h2 class="user-title mb-4"><b>All Products</b></h2>
     <div class="row"> 
       @foreach($products as $product)
       @if($product->isEnabled)
