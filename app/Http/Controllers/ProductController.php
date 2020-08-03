@@ -23,10 +23,6 @@ class ProductController extends Controller
             $products = Products::where('tags', 'like', '%'.$search.'%')
             ->orWhere('title', 'like', '%'.$search.'%')
             ->paginate(10);
-
-            //Buscar comando para realizar una búsqueda con artisan|patrón repositorio/factory
-            
-            //Buscar Collection y entender
         } else {
             $search = '';
             $products = Products::paginate(10);           
@@ -134,7 +130,7 @@ class ProductController extends Controller
 
     public function welcome()
     {
-        $products = Products::all();
+        $products = Products::paginate(9);
         return view('welcome', compact('products'));
     }
 }
