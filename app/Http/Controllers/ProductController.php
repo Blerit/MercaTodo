@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Products;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\updateRequest;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -90,10 +91,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(updateRequest $request, $id)
     {
         $product = Products::find($id);
         $product->fill($request->all());
+        if($request->file('image')){
+            $path = $request->file('image')->store('productsImg', 'public');
+            $img = Image::make(public_path("storage/$path"))->fit(1000,500);
+            $img->save();
+            $product->image = $path;
+        }
         $product->save();
 
         return redirect('products');

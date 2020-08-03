@@ -15,16 +15,7 @@
   </form>
 </div>
 <div class="container mb-4">
-          <img src="images/ecommerce.original.jpg" class="d-block w-100" alt="...">
-      </div>
-      <!-- <div class="carousel-item">
-        <img src="images/imagen.png" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="images/imagen.png" class="d-block w-100" alt="...">
-      </div> -->
-    </div>
-  </div>
+  <img src="images/ecommerce.original.jpg" class="d-block w-100" alt="...">
 </div>
   <div class="container"> 
     <h2 class="user-title mb-4"><b>All Products</b></h2>
