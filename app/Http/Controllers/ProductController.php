@@ -129,9 +129,18 @@ class ProductController extends Controller
         return redirect('products');
     }
 
-    public function welcome()
+    public function welcome(Request $request)
     {
-        $products = Products::paginate(9);
-        return view('welcome', compact('products'));
+        if($request->has('search')){
+            $search = trim($request->get('search'));
+            $products = Products::where('tags', 'like', '%'.$search.'%')
+            ->orWhere('title', 'like', '%'.$search.'%')
+            ->paginate(9);
+        } else {
+            $search = '';
+            $products = Products::paginate(9);           
+        }
+
+        return view('welcome', compact('products', 'search'));
     }
 }

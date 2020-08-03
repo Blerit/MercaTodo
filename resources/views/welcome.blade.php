@@ -1,6 +1,19 @@
 @extends('layouts.app')
 @section('title', 'MerkaTodo')
 @section('content')
+<div class="container">
+  <form class="form-inline mt-0 ml-2 float-right mb-3">
+    <input 
+        class="form-control mr-sm-2 float-right" 
+        type="search"
+        name="search" 
+        placeholder="Buscar Productos" 
+        aria-label="Search">
+    <button 
+        class="btn btn-outline-dark my-2 my-sm-0" 
+        type="submit">Buscar</button>
+  </form>
+</div>
 <div class="container mb-4">
           <img src="images/ecommerce.original.jpg" class="d-block w-100" alt="...">
       </div>
