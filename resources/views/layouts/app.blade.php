@@ -18,10 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm navbar-bg">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart3" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -57,6 +58,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @if(Auth::user()->admin)
+                                    <a 
+                                    class="dropdown-item" href="{{route('users.index')}}">Users</a>
+                                    <a 
+                                    class="dropdown-item" href="{{route('products.index')}}">Product List</a>
+                                @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -73,10 +80,15 @@
                 </div>
             </div>
         </nav>
+            <div class="container"> 
+                <div class="row">
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+                    <main class="py-4 col-12">
+                        @yield('content')
+                    </main>
+                </div>               
+            </div>
+            
     </div>
 </body>
 </html>

@@ -1,102 +1,58 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-        <title>Welcome!</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth                        
-                        <a href="{{ url('users') }}">Users</a>
-                        <a class="" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                        
-                    @endauth
+@extends('layouts.app')
+@section('title', 'MerkaTodo')
+@section('content')
+<div class="container">
+  <form class="form-inline mt-0 ml-2 float-right mb-3">
+    <input 
+        class="form-control mr-sm-2 float-right" 
+        type="search"
+        name="search" 
+        placeholder="Buscar Productos" 
+        aria-label="Search">
+    <button 
+        class="btn btn-outline-dark my-2 my-sm-0" 
+        type="submit">Buscar</button>
+  </form>
+</div>
+<div class="container mb-4">
+  <img src="images/ecommerce.original.jpg" class="d-block w-100" alt="...">
+</div>
+  <div class="container"> 
+    <h2 class="user-title mb-4"><b>All Products</b></h2>
+    <div class="row"> 
+      @foreach($products as $product)
+      @if($product->isEnabled)
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <a href="products/{{$product->id}}">                
+                <img src="storage/{{$product->image}}" class="card-img-top" alt="...">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><b>{{$product->title}}</b></h5>
+                <p class="card-text">{{$product->description}}</p>
+                <div class="pricebox">
+                  <span class="symbol">
+                    $
+                  </span>                  
+                  <span class="symbol">
+                    {{$product->price}}
+                  </span>
+                  <span class="symbol">
+                    <sup>COP</sup>
+                  </span><br>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    ¡ {{ Auth::user()->name }} !
-                    <h1>Welcome to MercaTodo</h1> 
-                    
-                </div>                
+                <small>
+                  Unidades Disponibles: {{$product->stock}}
+                </small><br>
+                <a href="#" class="btn btn-sm btn-info d-block">! Comprar !</a>
+              </div>
             </div>
-        </div>
-    </body>
-</html>
+          </div>         
+        @endif
+        @endforeach
+    </div>
+      <div class="pagination justify-content-center">
+        {{$products->links()}} 
+      </div>
+  </div>
+@endsection

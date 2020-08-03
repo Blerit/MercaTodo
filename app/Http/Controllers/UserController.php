@@ -14,8 +14,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $request->user()->authorizeRoles(['admin', 'user']);
-        $users = User::all();
+        $request->user()->authorizeRoles(['user', 'admin']);
+        $users = User::paginate(4);
         return view('users', compact('users'));
     }
 
@@ -78,7 +78,7 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function statusUpdate(Request $request, $id)
+    public function statusUpdate($id)
     {
         $user = User::find($id);        
         if ($user->status){
@@ -92,7 +92,7 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function adminUpdate(Request $request, $id)
+    public function adminUpdate($id)
     {
         $user = User::find($id);        
         if ($user->admin){
@@ -120,9 +120,5 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('checked')->except('welcome');
-
-        // $this->middleware('log')->only('index');
-
-        // $this->middleware('subscribed')->except('store');
     }
 }

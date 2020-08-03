@@ -10928,3 +10928,21 @@ a.text-dark:focus {
   }
 }
 
+.navbar-bg {
+  background-color: #e9913e;
+}
+
+.money {
+  display: flex;
+}
+
+.symbol {
+  font-weight: 700;
+  font-size: 25px;
+}
+
+.user-title {
+  color: #e9913e;
+  border-bottom: solid 1px;
+}
+
