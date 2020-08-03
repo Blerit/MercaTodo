@@ -17,7 +17,6 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    //analizar el request, es util tenerlo acá?
     {
         if($request->has('search')){
             $search = trim($request->get('search'));
