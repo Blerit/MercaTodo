@@ -3,8 +3,9 @@
 @section('content')
     <div class="container text-center">
         <div class="card">          
-                <div class="card-body">
-                    <img src="/storage/{{$product->image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <img 
+                    src="/storage/{{$product->image}}" class="card-img-top" alt="...">
                 <h4 class="card-title">{{$product->title}}</h4>
                 <h5 class="card-subtitle mb-2 text-muted">
                     $ {{$product->price}} COP</h5>

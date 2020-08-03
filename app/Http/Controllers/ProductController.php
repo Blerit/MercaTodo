@@ -50,7 +50,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $path = $request->file('image')->store('productsImg', 'public');
-        $img = Image::make(public_path("storage/$path"))->resize(1000,500);
+        $img = Image::make(public_path("storage/$path"))->fit(1000,500);
         $img->save();
         $product = new Products();
         $product->fill($request->all());

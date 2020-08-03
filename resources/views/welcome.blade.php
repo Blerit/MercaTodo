@@ -1,21 +1,18 @@
 @extends('layouts.app')
 @section('title', 'MerkaTodo')
 @section('content')
-<!-- <div class="container">
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-          <img src="images/1595890034Captura de pantalla de 2020-06-07 22-34-40.png" class="d-block w-100" alt="...">
+<div class="container mb-4">
+          <img src="images/ecommerce.original.jpg" class="d-block w-100" alt="...">
       </div>
-      <div class="carousel-item">
+      <!-- <div class="carousel-item">
         <img src="images/imagen.png" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item">
         <img src="images/imagen.png" class="d-block w-100" alt="...">
-      </div>
+      </div> -->
     </div>
   </div>
-</div> -->
+</div>
   <div class="container">
     <div class="row"> 
       @foreach($products as $product)
