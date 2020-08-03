@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->bigInteger('price');
             $table->integer('stock');
             $table->boolean('isEnabled')->default(true);
