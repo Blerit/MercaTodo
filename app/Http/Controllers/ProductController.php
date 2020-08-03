@@ -23,10 +23,6 @@ class ProductController extends Controller
             $products = Products::where('tags', 'like', '%'.$search.'%')
             ->orWhere('title', 'like', '%'.$search.'%')
             ->paginate(10);
-
-            //Buscar comando para realizar una búsqueda con artisan|patrón repositorio/factory
-            
-            //Buscar Collection y entender
         } else {
             $search = '';
             $products = Products::paginate(10);           
@@ -54,7 +50,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         $path = $request->file('image')->store('productsImg', 'public');
-        $img = Image::make(public_path("storage/$path"))->resize(1000,500);
+        $img = Image::make(public_path("storage/$path"))->fit(1000,500);
         $img->save();
         $product = new Products();
         $product->fill($request->all());
@@ -70,8 +66,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {   
+        $product = Products::find($id); 
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -132,9 +129,18 @@ class ProductController extends Controller
         return redirect('products');
     }
 
-    public function welcome()
+    public function welcome(Request $request)
     {
-        $products = Products::all();
-        return view('welcome', compact('products'));
+        if($request->has('search')){
+            $search = trim($request->get('search'));
+            $products = Products::where('tags', 'like', '%'.$search.'%')
+            ->orWhere('title', 'like', '%'.$search.'%')
+            ->paginate(9);
+        } else {
+            $search = '';
+            $products = Products::paginate(9);           
+        }
+
+        return view('welcome', compact('products', 'search'));
     }
 }

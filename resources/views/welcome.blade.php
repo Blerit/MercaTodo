@@ -2,36 +2,58 @@
 @section('title', 'MerkaTodo')
 @section('content')
 <div class="container">
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-          <img src="images/1595890034Captura de pantalla de 2020-06-07 22-34-40.png" class="d-block w-100" alt="...">
+  <form class="form-inline mt-0 ml-2 float-right mb-3">
+    <input 
+        class="form-control mr-sm-2 float-right" 
+        type="search"
+        name="search" 
+        placeholder="Buscar Productos" 
+        aria-label="Search">
+    <button 
+        class="btn btn-outline-dark my-2 my-sm-0" 
+        type="submit">Buscar</button>
+  </form>
+</div>
+<div class="container mb-4">
+          <img src="images/ecommerce.original.jpg" class="d-block w-100" alt="...">
       </div>
-      <div class="carousel-item">
+      <!-- <div class="carousel-item">
         <img src="images/imagen.png" class="d-block w-100" alt="...">
       </div>
       <div class="carousel-item">
         <img src="images/imagen.png" class="d-block w-100" alt="...">
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
-  <div class="container">
-    @foreach($products as $product)
+  <div class="container"> 
+    <h2 class="user-title mb-4"><b>All Products</b></h2>
+    <div class="row"> 
+      @foreach($products as $product)
       @if($product->isEnabled)
-        <div class="row"> 
-          <div class="col-md-4">
-            <div class="card" style="width: 24rem;">
-              <img src="storage/{{$product->image}}" class="card-img-top" alt="...">
+          <div class="col-md-4 mb-4">
+            <div class="card">
+              <a href="products/{{$product->id}}">                
+                <img src="storage/{{$product->image}}" class="card-img-top" alt="...">
+              </a>
               <div class="card-body">
-                <h5 class="card-title">{{$product->title}}</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title"><b>{{$product->title}}</b></h5>
+                <p class="card-text">{{$product->description}}</p>
+                <span>
+                  $ {{$product->price}} COP
+                </span><br>
+                <small>
+                  Unidades Disponibles: {{$product->stock}}
+                </small><br>
+                <a href="#" class="btn btn-sm btn-info d-block">! Comprar !</a>
               </div>
-            </div><br>
+            </div>
           </div>         
-        </div>
-      @endif
-    @endforeach
+        @endif
+        @endforeach
+    </div>
+      <div class="pagination justify-content-center">
+        {{$products->links()}} 
+      </div>
   </div>
 @endsection
